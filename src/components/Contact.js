@@ -69,7 +69,7 @@ export default class Contact extends React.Component {
 		// 이름, 전화번호 수정
 		handleEdit(name, phone) {
 			this.setState({
-				contactDate: update(this.state.contactData,
+				contactData: update(this.state.contactData,
 					{
 						[this.state.selectedKey]: {
 							name: { $set:name },
@@ -116,6 +116,7 @@ export default class Contact extends React.Component {
 									isSelected = {this.state.selectedKey != -1}
 									contact = {this.state.contactData[this.state.selectedKey]}
 									onRemove={this.handleRemove}
+									onEdit={this.handleEdit}
 								/>
 								<ContactCreate
 									onCreate={this.handleCreate}
