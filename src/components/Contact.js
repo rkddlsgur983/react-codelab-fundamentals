@@ -53,8 +53,13 @@ export default class Contact extends React.Component {
 		}
 
 		handleRemove() {
+			// 선택된 키가 없을경우 예외처리
+			if(this.state.selectedKey < 0) {
+				return;
+			}
+
 			this.setState({
-				contactData: update(this.state.contactDate,
+				contactData: update(this.state.contactData,
 					{ $splice: [[this.state.selectedKey, 1]] }
 				),
 				selectedKey: -1 // key 선택 초기화
@@ -110,6 +115,7 @@ export default class Contact extends React.Component {
 								<ContactDetails
 									isSelected = {this.state.selectedKey != -1}
 									contact = {this.state.contactData[this.state.selectedKey]}
+									onRemove={this.handleRemove}
 								/>
 								<ContactCreate
 									onCreate={this.handleCreate}
